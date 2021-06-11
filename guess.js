@@ -19,6 +19,7 @@ btnElement.addEventListener("click",function(){
     msgElement.innerHTML="Guess the number";
 })
 
+// as the speech is recognized we will fire this function
 recognition.addEventListener("result",function(e){
     number=e.results[0][0].transcript;
     console.log(number);
@@ -27,6 +28,7 @@ recognition.addEventListener("result",function(e){
     checkNumber(number);
 })
 
+// function that generates random number
 function getRandomNumber(){
     let ans=Math.trunc(Math.random()*100);
     return ans;
@@ -55,6 +57,7 @@ function checkNumber(number){
         <br>
         <button class="play-again-btn" id="play-again">Play Again</button>
         `;
+
         console.log("bingo");
     }else if(numberToCheck>randomNumber){
         msgElement.innerHTML='';
@@ -66,11 +69,12 @@ function checkNumber(number){
     }
 }
 
-
+// as soon as recognition end we will start it again
 recognition.addEventListener("end", function(){
     recognition.start()
 });
 
+// as we click on the play again the window will be reloded again
 document.body.addEventListener('click', function(e){
     if (e.target.id == 'play-again') {
       window.location.reload();
